@@ -49,14 +49,10 @@ function play() {
     games[count-1] = 0;
     while(isTrue){
     var gisk = window.prompt('Giskaðu á tölu milli 1 og 100');
-    if(gisk == null){
-        return;
-    }else if(gisk == ""){
+     if(gisk == ""){
         continue;
     }
     games[count-1]++;
-    parseGuess(gisk);
-    window.alert(getResponse(gisk, random));
     if(getResponse(gisk,random) == "rétt"){
         let svar = confirm("Viltu spila annan leik?")
         if(svar){
@@ -65,7 +61,11 @@ function play() {
             getResults();
             break;
         }
+    }else if(gisk == null){
+        games == [];
+        break;
     }
+    window.alert(getResponse(parseGuess(gisk), random));
     console.log(games);
     }
 }
@@ -80,7 +80,11 @@ function play() {
 *    "Þú spilaðir engann leik >_<"
 */
 function getResults(){
-    window.alert("Þú spilaðir "+ count + " leiki\n meðalfjöldi ágískana var "+ calculateAverage() )
+    if(games[i] >= 1){
+        window.alert("Þú spilaðir "+ count + " leiki\n meðalfjöldi ágískana var "+ calculateAverage() )
+    }else{
+        window.alert("þú spilaðir engann leik >__<")
+    }
 }
 
 /**
