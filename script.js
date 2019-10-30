@@ -25,7 +25,6 @@ var count = 0;
  * Ef notandi ýtir á "cancel" þá er sótt niðurstöður með getResults() og þær birtar með alert().
  */
 function start() {
-    count++
  play();
 }
 
@@ -44,13 +43,16 @@ function start() {
 * Þarf aðútfæra með lykkju og flæðisstýringum
 */
 function play() {
+    count++
     const random = randomNumber(1,100);
     let isTrue = true
     games[count-1] = 0;
     while(isTrue){
     var gisk = window.prompt('Giskaðu á tölu milli 1 og 100');
     if(gisk == null){
-        break;
+        return;
+    }else if(gisk == ""){
+        continue;
     }
     games[count-1]++;
     parseGuess(gisk);
@@ -103,8 +105,8 @@ function calculateAverage(){
 * Ef ekki er hægt að ná tölu úr input er skilað null
 */
 function parseGuess(input){
-    if(!input){
-        return null;
+    if(input ==""){
+        return "";
     }else{
         return parseInt(input);
     }
